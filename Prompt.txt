@@ -1,0 +1,101 @@
+## Refactor Task
+
+You are given an existing Python codebase that simulates a set of “agent tools” used to construct and send HTTP requests.
+
+The current implementation suffers from:
+
+* Significant code duplication across multiple tools
+* Unclear and inconsistent validation logic
+* Inconsistent request payload formats
+* Error-prone maintenance due to copy-pasted logic
+
+Your task is to produce a **refactored implementation** and **PR-level documentation**.
+
+**You must NOT modify any of the provided input files.**
+Instead, create a new refactored implementation using new files only.
+
+---
+
+## **1. Existing Behavior (for context)**
+
+The input code defines several tools (`ToolA`, `ToolB`, `ToolC`) that:
+
+* Perform similar request validation
+* Build request payloads with slight variations
+* Send HTTP POST requests via a shared client
+* Return structured success or error results
+
+All existing behaviors must remain supported after refactoring, including:
+
+* Public method signatures
+* Return value structure
+* Basic request logging behavior
+
+---
+
+## **2. Refactor Requirements**
+
+### **2.1 Reduce Duplication**
+
+* Extract shared validation, request construction, and logging logic
+* Eliminate copy-pasted code across tools
+
+### **2.2 Improve Clarity**
+
+* Separate responsibilities clearly (validation, payload building, transport)
+* Use consistent naming and data formats
+
+### **2.3 Improve Correctness**
+
+* Fix behavioral inconsistencies caused by duplicated logic
+* Ensure all tools validate inputs using the same rules
+
+### **2.4 Maintain Compatibility**
+
+* Existing usage code must continue to work without modification
+* Tool method signatures and return formats must remain compatible
+
+### **2.5 Add Minimal Tests**
+
+* Provide a small test suite that verifies:
+
+  * Valid input behavior for each tool
+  * Invalid input handling
+  * Consistent payload formatting
+
+---
+
+## **3. Output Requirements**
+
+Your final answer must include **two deliverables**:
+
+### **3.1 Refactored Implementation**
+
+* New code only (do not modify input files)
+* May introduce shared base classes, helper modules, or utilities
+* Provide an executable script named **`run_tests`** that runs the tests and exits non-zero on failure
+
+### **3.2 Documentation**
+
+* A `README` (markdown preferred) written like a PR description
+* Must explain:
+
+  * What was refactored and why
+  * Before/after structure
+  * How to run tests using `run_tests`
+  * Any assumptions or tradeoffs
+
+---
+
+## **4. Constraints**
+
+* No changes to the input files
+* No breaking changes to the public tool interface
+* Prefer standard library only (optional: `requests`/`httpx` if already present)
+
+---
+
+## **5. Final Deliverables**
+
+1. Refactored implementation (new code) + executable `run_tests`
+2. README documentation
